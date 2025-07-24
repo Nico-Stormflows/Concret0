@@ -11,37 +11,35 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Colores personalizados basados en tu paleta original
-        "primary-bg": "#1A1A2E",
-        "secondary-bg": "#16213E",
-        "light-text": "#E0E0E0",
-        "muted-text": "#B0B0B0",
-        "heading-highlight": "#53BF9D",
-        "button-gradient-start": "#0F3460",
-        "button-gradient-end": "#16213E",
-        "card-bg-light": "#FFFFFF",
-        "card-bg-dark": "#2A2A4A",
-        "border-subtle": "#3A3A5A",
-        "tab-active-border": "#53BF9D",
-        "tab-active-bg": "#2A2A4A",
-        "tab-inactive-text": "#B0B0B0",
-        "form-input-border": "#4A4A6A",
-        "form-input-text": "#E0E0E0",
-        "form-placeholder": "#B0B0B0",
-        // Colores adicionales encontrados en el HTML original que no estaban en :root
-        "primary-dark": "#1A1A2E", // Asumiendo que es el mismo que primary-bg
-        "secondary-dark": "#16213E", // Asumiendo que es el mismo que secondary-bg
-        "success-light": "#D4EDDA",
-        "accent-main": "#53BF9D",
+        // Paleta principal dark glass modern
+        'bg-main': '#1a1a2e', // fondo principal
+        'bg-alt': '#16213e', // secciones alternas, cards, glass
+        'bg-panel': '#2a2a4a', // paneles, overlays, glass
+        'text-main': '#f4f6f8', // texto principal
+        'text-muted': '#b0b0b0', // texto secundario
+        'accent': '#53BF9D', // acento principal, botones, links activos
+        'accent-alt': '#53a2bf', // acento alternativo, hover
+        'accent-cyan': '#00CFFF', // detalles, iconos
+        'accent-warn': '#ffb347', // naranja suave, alertas
+        // Glassmorphism
+        'glass-bg': 'rgba(26,26,46,0.7)',
+        'glass-border': 'rgba(255,255,255,0.08)',
+        'glass-shadow': '0 8px 32px 0 rgba(31,38,135,0.37)',
       },
       fontFamily: {
-        heading: ["var(--font-bodoni-moda)"],
-        sans: ["var(--font-ibm-plex-sans)"],
+        heading: ['IBM Plex Sans', 'sans-serif'],
+        sans: ['IBM Plex Sans', 'sans-serif'],
+      },
+      boxShadow: {
+        glass: '0 8px 32px 0 rgba(31,38,135,0.37)',
+        'glass-md': '0 4px 16px 0 rgba(31,38,135,0.25)',
+      },
+      backgroundImage: {
+        'btn-gradient': 'linear-gradient(90deg, #53BF9D 0%, #53a2bf 100%)',
+        'glass-gradient': 'linear-gradient(135deg, rgba(26,26,46,0.7) 60%, rgba(83,191,157,0.08) 100%)',
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        glass: '1rem',
       },
       keyframes: {
         'accordion-down': {

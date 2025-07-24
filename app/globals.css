@@ -7,49 +7,33 @@ html {
 }
 
 :root {
-  --color-bg-primary: #1a1a2e; /* Main dark background */
-  --color-bg-secondary: #16213e; /* Slightly different dark for alternating sections/cards */
-  --color-text-light: #e0e0e0; /* General light text on dark backgrounds */
-  --color-text-muted: #b0b0b0; /* Muted text on dark backgrounds */
-  --color-heading-highlight: #53bf9d; /* Subtle teal for highlighted headings */
-  --color-button-gradient-start: #0f3460; /* Dark blue for button gradient start */
-  --color-button-gradient-end: #16213e; /* Darker blue for button gradient end */
-  --color-card-bg-light: #ffffff; /* White background for inner cards/forms */
-  --color-card-bg-dark: #2a2a4a; /* Dark background for outer cards in dark sections */
-  --color-border-subtle: #3a3a5a; /* Subtle border color */
-  --color-chart-bar-1: #0f3460; /* Chart bar color 1 */
-  --color-chart-bar-2: #53bf9d; /* Chart bar color 2 */
-  --color-tab-active-border: #53bf9d; /* Active tab border color */
-  --color-tab-active-bg: #2a2a4a; /* Active tab background color */
-  --color-tab-inactive-text: #b0b0b0; /* Inactive tab text color */
-  --color-form-input-border: #4a4a6a; /* Form input border color */
-  --color-form-input-text: #e0e0e0; /* Form input text color */
-  --color-form-placeholder: #b0b0b0; /* Form input placeholder color */
-  --color-primary-dark: #1a1a2e; /* Additional color for text on light backgrounds */
-  --color-secondary-dark: #16213e; /* Additional color for text on light backgrounds */
-  --color-success-light: #d4edda; /* Added for the 'Disponible' background */
-  --color-accent-main: #53bf9d; /* Added for the 'Disponible' text */
-  /* Variables HSL para los componentes de shadcn/ui/chart */
-  --chart-1: 216 73% 21%; /* Aproximación de #0F3460 */
-  --chart-2: 162 56% 48%; /* Aproximación de #53BF9D */
+  --color-bg-main: #1a1a2e;
+  --color-bg-alt: #16213e;
+  --color-bg-panel: #2a2a4a;
+  --color-text-main: #f4f6f8;
+  --color-text-muted: #b0b0b0;
+  --color-accent: #53BF9D;
+  --color-accent-alt: #53a2bf;
+  --color-accent-cyan: #00CFFF;
+  --color-accent-warn: #ffb347;
+  /* Glassmorphism */
+  --glass-bg: rgba(26,26,46,0.7);
+  --glass-border: rgba(255,255,255,0.08);
+  --glass-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+  /* Degradados */
+  --btn-gradient: linear-gradient(90deg, #53BF9D 0%, #53a2bf 100%);
+  --glass-gradient: linear-gradient(135deg, rgba(26,26,46,0.7) 60%, rgba(83,191,157,0.08) 100%);
 }
 
 @layer base {
   body {
-    /* Estas clases ahora se aplican en app/layout.tsx directamente */
-    font-family: var(--font-body);
-    background-color: var(--color-bg-primary); /* Overall body background is dark */
-    color: var(--color-text-light);
+    @apply font-sans;
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
   }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: var(--font-heading);
-    color: var(--color-text-light);
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans;
+    color: var(--color-text-main);
   }
   h1 {
     font-size: 3rem;
@@ -92,15 +76,26 @@ html {
     font-size: 1.25rem;
   }
 
+  .glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 1rem;
+  }
   .btn-primary {
-    background-image: linear-gradient(to right, var(--color-button-gradient-start), var(--color-button-gradient-end));
-    color: var(--color-text-light);
+    background-image: var(--btn-gradient);
+    color: var(--color-text-main);
+    border: 1px solid var(--color-accent);
+    box-shadow: 0 4px 16px 0 rgba(31,38,135,0.25);
     transition: all 0.3s ease;
   }
   .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    opacity: 0.9;
+    box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+    background-image: linear-gradient(90deg, #53a2bf 0%, #53BF9D 100%);
+    color: var(--color-accent-cyan);
+    opacity: 0.95;
   }
 
   .tab-active {

@@ -1,10 +1,11 @@
+"use client"
 import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
 import { RealtorSection } from "@/components/realtor-section"
 import { DeveloperSection } from "@/components/developer-section"
 import { FAQSection } from "@/components/faq-section"
 import { Footer } from "@/components/footer"
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import { Check, X, Info, MessageCircle } from "lucide-react"
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip"
 import WhatsAppIcon from "@/public/whatsapp.svg"
@@ -89,14 +90,65 @@ const TOOLTIPS = {
   "Restricción de dirección IP": "Limita el acceso a la plataforma desde ciertas direcciones IP.",
 }
 
+// Componente de fondo animado glassmorphism
+function AnimatedGlassBackground() {
+  // Usar un pseudo-elemento ::before para el degradado con blur y overlay de ruido
+  return (
+    <>
+      <div
+        className="fixed inset-0 z-0 pointer-events-none"
+        style={{
+          // El degradado se aplica en ::before vía CSS-in-JS
+        }}
+      >
+        <style>{`
+          .bg-dithered-gradient::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at 30% 40%, #53BF9D33 0%, #53BF9D22 20%, #53BF9D11 35%, #1a1a2e 60%, #1a1a2e 100%);
+            filter: blur(1.2px);
+            opacity: 0.95;
+          }
+          .bg-dithered-gradient::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background-image: url('/noise.png');
+            opacity: 0.10;
+            mix-blend-mode: overlay;
+          }
+        `}</style>
+        <div className="bg-dithered-gradient w-full h-full absolute inset-0" />
+      </div>
+    </>
+  )
+}
+
+// Tarjeta glass reutilizable
+function GlassCard({ children, className = "", style = {} }: any) {
+  return (
+    <div
+      className={`glass shadow-glass p-8 rounded-glass ${className}`}
+      style={style}
+    >
+      {children}
+    </div>
+  )
+}
+
 function PlanCard({ nombre, features, destacado, color }: any) {
   return (
-    <div className={`flex flex-col`} style={{ backgroundColor: '#1A1A2E', borderRadius: '1.5rem', borderWidth: '4px', borderColor: destacado ? '#53BF9D' : '#3A3A5A', boxShadow: '0 10px 20px rgba(0,0,0,0.15)', padding: '2rem', width: '100%', maxWidth: '24rem', margin: '0 auto' }}> 
+    <GlassCard className="flex flex-col" style={{ borderWidth: '4px', borderColor: destacado ? '#53BF9D' : 'rgba(255,255,255,0.08)', maxWidth: '24rem', margin: '0 auto' }}>
       <h3 className="text-2xl font-bold text-center" style={{ color: '#f4f6f8', letterSpacing: '0.1em', marginBottom: '1rem' }}>{nombre.toUpperCase()}</h3>
-      <hr className="border-border-subtle mb-6" />
+      <hr className="border-glass-border mb-6" />
       <ul className="flex-1 space-y-2">
         {features.map((f: any, i: number) => (
-          <li key={i} className={`flex items-center gap-2 text-lg`} style={{ color: f.ok ? '#f4f6f8' : '#B0B0B0' }}> 
+          <li key={i} className={`flex items-center gap-2 text-lg`} style={{ color: f.ok ? '#f4f6f8' : '#B0B0B0' }}>
             {f.info ? (
               <TooltipProvider delayDuration={0} skipDelayDuration={0}>
                 <Tooltip>
@@ -118,34 +170,40 @@ function PlanCard({ nombre, features, destacado, color }: any) {
           </li>
         ))}
       </ul>
-    </div>
+    </GlassCard>
   )
 }
 
 export default function Home() {
   return (
     <>
+      <AnimatedGlassBackground />
       <Header />
       <main>
         <HeroSection />
+        <RealtorSection />
+        <DeveloperSection />
         {/* Comparativa de Planes */}
-        <section className="py-20 md:py-24 bg-secondary-bg text-light-text">
-          <div className="container mx-auto px-6">
-            <div className="grid md:grid-cols-3 gap-10">
+        <section className="py-20 md:py-24 bg-bg-main text-text-main relative z-10">
+          <div className="container mx-auto px-6 flex flex-col h-full">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-text-main">
+                Planes a tu medida
+              </h2>
+            </div>
+            <div className="grid md:grid-cols-3 gap-10 mb-16">
               {PLANES.map((plan, idx) => (
                 <PlanCard key={plan.nombre} {...plan} />
               ))}
             </div>
-            <div className="flex justify-center mt-10">
-              <a href="https://wa.me/5491112345678" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 bg-[#53BF9D] text-black font-bold py-4 px-8 rounded-full text-xl shadow-lg hover:bg-[#3cae7d] transition-colors">
+            <div className="flex justify-center mt-auto mb-4">
+              <a href="https://wa.me/5491112345678" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 bg-accent text-black font-bold py-4 px-8 rounded-full text-xl shadow-lg hover:bg-accent-alt transition-colors">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" className="w-7 h-7" />
                 Contactarnos
               </a>
             </div>
           </div>
         </section>
-        <RealtorSection />
-        <DeveloperSection />
         <FAQSection />
       </main>
       <Footer />

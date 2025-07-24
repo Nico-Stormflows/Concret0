@@ -45,6 +45,11 @@ export function FAQSection() {
         "Entendemos que cada empresa utiliza sus propias herramientas. Por eso, CONCRET0 cuenta con integraciones para los sistemas más utilizados en la industria. Además, si requieres algo más especializado, nuestro equipo está disponible para asistirte en la implementación de las integraciones que necesites.",
     },
     {
+      question: "¿Cuánto tiempo toma la implementación?",
+      answer:
+        "El tiempo de implementación varía según las necesidades específicas de cada empresa. Uno de nuestros consultores realizará un análisis detallado para definir los pasos y tiempos necesarios, asegurando que la integración sea eficiente y sin complicaciones.",
+    },
+    {
       question: "¿Puedo generar informes con CONCRET0?",
       answer:
         "CONCRET0 te ofrece la posibilidad de crear informes completos sobre el progreso de tus proyectos, incluyendo costos, cronogramas y otros aspectos. Estos informes son personalizables y te brindan información valiosa para tomar decisiones más acertadas.",
@@ -57,24 +62,24 @@ export function FAQSection() {
   ]
 
   return (
-    <section id="faq-section" className="py-20 md:py-24 bg-primary-bg text-light-text">
+    <section id="faq-section" className="py-20 md:py-24 bg-bg-main text-text-main scroll-mt-20">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-light-text">
-            Preguntas <span className="text-heading-highlight">Frecuentes</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-text-main">
+            Preguntas <span className="text-accent">Frecuentes</span>
           </h2>
-          <p className="mt-4 text-xl text-muted-text max-w-3xl mx-auto">
+          <p className="mt-4 text-xl text-text-muted max-w-3xl mx-auto">
             Encontrá respuestas a las dudas más comunes sobre Concret0.
           </p>
         </div>
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto glass p-8 rounded-2xl shadow-glass border border-glass-border">
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="border-b border-border-subtle">
-                <AccordionTrigger className="faq-question text-xl font-semibold text-light-text hover:text-heading-highlight py-6">
+              <AccordionItem key={index} value={`item-${index}`} className="border-b border-glass-border">
+                <AccordionTrigger className="faq-question text-xl font-semibold text-text-main hover:text-accent py-6">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="faq-answer text-lg text-muted-text pb-6">
+                <AccordionContent className="faq-answer text-lg text-text-muted pb-6">
                   <p>{faq.answer}</p>
                 </AccordionContent>
               </AccordionItem>
