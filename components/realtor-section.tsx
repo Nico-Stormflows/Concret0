@@ -121,8 +121,8 @@ export function RealtorSection() {
                 <p className="text-text-muted text-lg">Av. del Libertador 8600, CABA</p>
                 <div className="mt-4 w-full h-56 rounded-lg overflow-hidden">
                   <Image
-                    src="/grilla-render-3d.jpg"
-                    alt="Grilla de Renders de Edificios"
+                    src="/saldias-1168-cam06.jpg"
+                    alt="Saldias 1168"
                     width={384}
                     height={224}
                     className="w-full h-full object-cover"

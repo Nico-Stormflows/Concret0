@@ -15,32 +15,29 @@ export function Header() {
 
   return (
     <header id="header" className="glass sticky top-0 z-50 shadow-glass">
-      <nav className="container mx-auto px-6 py-2 flex justify-between items-center">
+      <nav className="container mx-auto px-6 py-2 flex items-center justify-between">
         <div className="text-2xl font-bold text-text-main">
           <Link href="#" className="text-text-main flex items-center">
             <Image src="/logo-concreto.png" alt="Logo Concret0" width={160} height={40} priority />
           </Link>
         </div>
-        <div className="hidden md:flex items-center space-x-8 text-lg">
-          <Link href="#section-inmobiliaria" className="text-text-muted hover:text-accent transition-colors">
-            Para Inmobiliarias
-          </Link>
-          <Link
-            href="#section-desarrolladora"
-            className="text-text-muted hover:text-accent transition-colors"
-          >
-            Para Desarrolladoras
-          </Link>
-          <Link href="#faq-section" className="text-text-muted hover:text-accent transition-colors">
-            FAQ
+        <div className="hidden md:flex flex-row-reverse items-center gap-6 text-lg flex-nowrap overflow-x-auto">
+          <Link href="#clientes" className="btn-primary px-6 py-3 rounded-lg font-semibold text-lg shadow-glass ml-4">
+            Clientes
           </Link>
           <Link href="#contacto" className="text-text-muted hover:text-accent transition-colors">
             Contacto
           </Link>
+          <Link href="#faq-section" className="text-text-muted hover:text-accent transition-colors">
+            FAQ
+          </Link>
+          <Link href="#section-desarrolladora" className="text-text-muted hover:text-accent transition-colors">
+            Para Desarrolladoras
+          </Link>
+          <Link href="#section-inmobiliaria" className="text-text-muted hover:text-accent transition-colors">
+            Para Inmobiliarias
+          </Link>
         </div>
-        <Link href="#clientes" className="hidden md:block btn-primary px-6 py-3 rounded-lg font-semibold text-lg shadow-glass">
-          Clientes
-        </Link>
         <div className="md:hidden">
           <Button
             variant="ghost"

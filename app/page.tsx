@@ -9,6 +9,7 @@ import React, { useEffect, useRef } from "react"
 import { Check, X, Info, MessageCircle } from "lucide-react"
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip"
 import WhatsAppIcon from "@/public/whatsapp.svg"
+import Image from "next/image"
 
 // MATRIZ REAL SEGÚN LA WEB OFICIAL
 const PLANES = [
@@ -174,6 +175,78 @@ function PlanCard({ nombre, features, destacado, color }: any) {
   )
 }
 
+// Carrousel simple para la sección "Una plataforma integral"
+function CarouselSection() {
+  const images = [
+    ...Array(8).fill(0).map((_, i) => `/0${i+1} carrousel.jpg`)
+  ];
+  const [current, setCurrent] = React.useState(0);
+  const goTo = (idx: number) => setCurrent((idx + images.length) % images.length);
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % images.length);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, [images.length]);
+  return (
+    <section className="py-20 md:py-24 relative overflow-hidden text-text-main z-10">
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <div className="glass w-full h-full" style={{background: 'var(--glass-gradient)'}} />
+      </div>
+      <div className="container mx-auto px-6 flex flex-col items-center relative z-10">
+        <h2 className="text-4xl md:text-5xl font-bold text-text-main text-center mb-4">Una plataforma integral</h2>
+        <p className="mt-4 text-xl text-text-muted max-w-3xl mx-auto text-center mb-8 md:whitespace-nowrap">
+          Un único sitio para llevar el control de todos los proyectos, de punta a punta del proceso
+        </p>
+        <div className="glass p-6 rounded-2xl shadow-glass border-2 border-glass-border relative max-w-3xl w-full">
+          <div className="glass rounded-xl w-full aspect-video overflow-hidden relative">
+            {images.map((src, idx) => (
+              <Image
+                key={src}
+                src={src}
+                alt={`Carrousel ${idx+1}`}
+                fill
+                className={`object-cover transition-opacity duration-700 ${idx === current ? 'opacity-100' : 'opacity-0'}`}
+                sizes="(max-width: 768px) 100vw, 768px"
+                priority={idx === 0}
+              />
+            ))}
+            {/* Flechas */}
+            <button
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-bg-panel/80 hover:bg-accent/80 text-text-main rounded-full p-2 shadow-glass border border-glass-border z-10"
+              onClick={() => goTo(current - 1)}
+              aria-label="Anterior"
+              type="button"
+            >
+              <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </button>
+            <button
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-bg-panel/80 hover:bg-accent/80 text-text-main rounded-full p-2 shadow-glass border border-glass-border z-10"
+              onClick={() => goTo(current + 1)}
+              aria-label="Siguiente"
+              type="button"
+            >
+              <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </button>
+            {/* Dots */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+              {images.map((_, idx) => (
+                <button
+                  key={idx}
+                  className={`w-3 h-3 rounded-full ${idx === current ? 'bg-accent' : 'bg-text-muted/40'}`}
+                  onClick={() => setCurrent(idx)}
+                  aria-label={`Ir a imagen ${idx+1}`}
+                  type="button"
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   return (
     <>
@@ -183,6 +256,7 @@ export default function Home() {
         <HeroSection />
         <RealtorSection />
         <DeveloperSection />
+        <CarouselSection />
         {/* Comparativa de Planes */}
         <section className="py-20 md:py-24 bg-bg-main text-text-main relative z-10">
           <div className="container mx-auto px-6 flex flex-col h-full">
@@ -197,8 +271,7 @@ export default function Home() {
               ))}
             </div>
             <div className="flex justify-center mt-auto mb-4">
-              <a href="https://wa.me/5491112345678" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 bg-accent text-black font-bold py-4 px-8 rounded-full text-xl shadow-lg hover:bg-accent-alt transition-colors">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" className="w-7 h-7" />
+              <a href="#contacto" className="flex items-center justify-center bg-accent text-black font-bold py-4 px-8 rounded-full text-xl shadow-lg hover:bg-accent-alt transition-colors">
                 Contactarnos
               </a>
             </div>
