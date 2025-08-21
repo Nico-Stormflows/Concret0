@@ -3,9 +3,9 @@ import Image from "next/image"
 
 export function AboutSection() {
   const stats = [
-    { number: "50+", label: "Desarrolladoras" },
-    { number: "200+", label: "Agentes" },
-    { number: "1000+", label: "Proyectos" }
+    { number: "30", label: "Desarrolladoras" },
+    { number: "50", label: "Agentes" },
+    { number: "120", label: "Proyectos" }
   ]
 
   return (

@@ -39,7 +39,7 @@ export function ProjectsSection() {
       id: 5,
       title: "Reportes Detallados",
       description: "Accede a reportes detallados de ventas y transacciones en tiempo real.",
-      image: "/05 carrousel.jpg"
+      image: "/Reportes.png"
     }
   ]
 
@@ -200,7 +200,7 @@ export function ProjectsSection() {
                         </div>
                       ) : (
                         // Show image for specific projects, C0 for others
-                        project.id === 2 || project.id === 3 || project.id === 4 ? (
+                        project.id === 2 || project.id === 3 || project.id === 4 || project.id === 5 ? (
                           <div className="w-full h-full rounded-lg overflow-hidden">
                             <Image
                               src={project.image}
