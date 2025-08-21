@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${ibmPlexSans.variable}`}>
       {/* Aplicar clases de tema oscuro directamente al body */}
-      <body className="font-sans antialiased bg-primary-bg text-light-text">{children}</body>
+      <body className="font-sans antialiased bg-white text-[#1F1F1F]">{children}</body>
     </html>
   )
 }

@@ -1,8 +1,10 @@
 "use client"
 
+import { useState } from "react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 export function FAQSection() {
+  const [openItem, setOpenItem] = useState<string | undefined>(undefined)
   const faqs = [
     {
       question: "¿Qué es Concret0 y para quién es?",
@@ -62,28 +64,41 @@ export function FAQSection() {
   ]
 
   return (
-    <section id="faq-section" className="py-20 md:py-24 bg-bg-main text-text-main scroll-mt-20">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-text-main">
-            Preguntas <span className="text-accent">Frecuentes</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-[#1F1F1F]">
+            Preguntas <span className="text-[#C1DEE8]">Frecuentes</span>
           </h2>
-          <p className="mt-4 text-xl text-text-muted max-w-3xl mx-auto">
+          <p className="mt-4 text-xl text-[#1F1F1F] max-w-3xl mx-auto">
             Encontrá respuestas a las dudas más comunes sobre Concret0.
           </p>
         </div>
-        <div className="max-w-4xl mx-auto glass p-8 rounded-2xl shadow-glass border border-glass-border">
-          <Accordion type="single" collapsible className="w-full">
-            {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="border-b border-glass-border">
-                <AccordionTrigger className="faq-question text-xl font-semibold text-text-main hover:text-accent py-6">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="faq-answer text-lg text-text-muted pb-6">
-                  <p>{faq.answer}</p>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
+        <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg border border-[#C1DEE8] p-8">
+          <Accordion 
+            type="single" 
+            collapsible 
+            className="w-full"
+            value={openItem}
+            onValueChange={setOpenItem}
+          >
+            {faqs.map((faq, index) => {
+              const itemValue = `item-${index}`
+              const isOpen = openItem === itemValue
+              
+              return (
+                <AccordionItem key={index} value={itemValue} className="border-b border-[#BEBEBE] last:border-b-0">
+                  <AccordionTrigger 
+                    className="text-xl font-semibold text-[#1F1F1F] hover:text-[#1F1F1F] py-6 transition-all duration-200 hover:no-underline bg-white hover:bg-white"
+                  >
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-lg text-[#1F1F1F] pb-6">
+                    <p>{faq.answer}</p>
+                  </AccordionContent>
+                </AccordionItem>
+              )
+            })}
           </Accordion>
         </div>
       </div>

@@ -2,7 +2,7 @@ import { Phone, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
-export function Footer() {
+export function FooterSimple() {
   return (
     <footer className="py-20 relative overflow-hidden">
       {/* Background gradient */}
@@ -66,10 +66,6 @@ export function Footer() {
               </Button>
             </form>
           </div>
-        </div>
-        
-        <div className="mt-16 pt-8 border-t border-[#BEBEBE] text-center">
-          <p className="text-[#1F1F1F] text-lg">&copy; 2025 Concret0. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

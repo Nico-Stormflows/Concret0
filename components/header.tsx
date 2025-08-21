@@ -1,93 +1,118 @@
 "use client"
 
-import Link from "next/link"
-import { useState } from "react"
-import { Menu } from "lucide-react"
+import { useState, useEffect } from "react"
+import { Menu, X, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import Image from "next/image"
 
 export function Header() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
-  const handleNavLinkClick = () => {
-    setIsMobileMenuOpen(false)
-  }
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
-    <header id="header" className="glass sticky top-0 z-50 shadow-glass">
-      <nav className="container mx-auto px-6 py-2 flex items-center justify-between">
-        <div className="text-2xl font-bold text-text-main">
-          <Link href="#" className="text-text-main flex items-center">
-            <Image src="/logo-concreto.png" alt="Logo Concret0" width={160} height={40} priority />
-          </Link>
+    <header className={`bg-white sticky top-0 z-50 transition-all duration-200 ${
+      isScrolled ? 'shadow-lg' : ''
+    }`}>
+      <div className="container mx-auto px-6">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div className="flex items-center">
+            <Link href="/">
+              <Image
+                src="/logo-concreto.png"
+                alt="Concret0"
+                width={120}
+                height={32}
+                className="h-8 w-auto"
+              />
+            </Link>
+          </div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
+            <Link href="/version-2" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
+              Versión 2
+            </Link>
+            <Link href="#nosotros" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
+              Nosotros
+            </Link>
+            <Link href="#proyectos" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
+              Proyectos
+            </Link>
+            <Link href="#agentes" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
+              Agentes
+            </Link>
+            <Link href="#servicios" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
+              Servicios
+            </Link>
+            <Link href="#propiedades" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
+              Propiedades
+            </Link>
+          </nav>
+
+          {/* Right side - Search, Other services, Contact */}
+          <div className="hidden md:flex items-center space-x-6">
+            <button className="text-[#1F1F1F] hover:text-[#C1DEE8] transition-colors">
+              <Search className="w-5 h-5" />
+            </button>
+            <Link href="#otros-servicios" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
+              Otros servicios
+            </Link>
+            <Button className="bg-[#1F1F1F] text-white hover:bg-black font-semibold px-6 py-2 rounded-lg">
+              Contactanos
+            </Button>
+          </div>
+
+          {/* Mobile menu button */}
+          <button
+            className="md:hidden text-[#1F1F1F]"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
-        <div className="hidden md:flex flex-row-reverse items-center gap-6 text-lg flex-nowrap overflow-x-auto">
-          <Link href="#clientes" className="btn-primary px-6 py-3 rounded-lg font-semibold text-lg shadow-glass ml-4">
-            Clientes
-          </Link>
-          <Link href="#contacto" className="text-text-muted hover:text-accent transition-colors">
-            Contacto
-          </Link>
-          <Link href="#faq-section" className="text-text-muted hover:text-accent transition-colors">
-            FAQ
-          </Link>
-          <Link href="#section-desarrolladora" className="text-text-muted hover:text-accent transition-colors">
-            Para Desarrolladoras
-          </Link>
-          <Link href="#section-inmobiliaria" className="text-text-muted hover:text-accent transition-colors">
-            Para Inmobiliarias
-          </Link>
-        </div>
-        <div className="md:hidden">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-text-muted focus:outline-none"
-          >
-            <Menu className="w-8 h-8" />
-            <span className="sr-only">Toggle mobile menu</span>
-          </Button>
-        </div>
-      </nav>
-      <div id="mobile-menu" className={`md:hidden px-6 pb-4 transition-all duration-300 ${isMobileMenuOpen ? "block" : "hidden"}`}>
-        <div className="glass p-4 rounded-xl shadow-glass">
-          <Link
-            href="#section-inmobiliaria"
-            className="block py-2 text-lg text-text-muted hover:text-accent transition-colors"
-            onClick={handleNavLinkClick}
-          >
-            Para Inmobiliarias
-          </Link>
-          <Link
-            href="#section-desarrolladora"
-            className="block py-2 text-lg text-text-muted hover:text-accent transition-colors"
-            onClick={handleNavLinkClick}
-          >
-            Para Desarrolladoras
-          </Link>
-          <Link
-            href="#faq-section"
-            className="block py-2 text-lg text-text-muted hover:text-accent transition-colors"
-            onClick={handleNavLinkClick}
-          >
-            Preguntas Frecuentes
-          </Link>
-          <Link
-            href="#contacto"
-            className="block py-2 text-lg text-text-muted hover:text-accent transition-colors"
-            onClick={handleNavLinkClick}
-          >
-            Contacto
-          </Link>
-          <Link
-            href="#contacto"
-            className="block mt-4 btn-primary text-center px-6 py-3 rounded-lg font-semibold text-lg shadow-glass"
-            onClick={handleNavLinkClick}
-          >
-            Contactanos
-          </Link>
-        </div>
+
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="md:hidden py-4 border-t border-[#BEBEBE]">
+            <nav className="flex flex-col space-y-4">
+              <Link href="/version-2" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
+                Versión 2
+              </Link>
+              <Link href="#nosotros" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
+                Nosotros
+              </Link>
+              <Link href="#proyectos" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
+                Proyectos
+              </Link>
+              <Link href="#agentes" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
+                Agentes
+              </Link>
+              <Link href="#servicios" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
+                Servicios
+              </Link>
+              <Link href="#propiedades" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
+                Propiedades
+              </Link>
+              <Link href="#otros-servicios" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
+                Otros servicios
+              </Link>
+              <Button className="bg-[#1F1F1F] text-white hover:bg-black font-semibold px-6 py-2 rounded-lg w-full">
+                Contactanos
+              </Button>
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   )
