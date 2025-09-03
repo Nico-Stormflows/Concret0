@@ -9,7 +9,25 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
-const PLANES = [
+interface Feature {
+  label: string
+  ok: boolean
+  info?: boolean
+}
+
+interface Plan {
+  nombre: string
+  destacado: boolean
+  features: Feature[]
+}
+
+interface PlanCardProps {
+  nombre: string
+  features: Feature[]
+  destacado: boolean
+}
+
+const PLANES: Plan[] = [
   {
     nombre: "Estandar",
     destacado: false,
@@ -72,7 +90,7 @@ const PLANES = [
   },
 ]
 
-const TOOLTIPS = {
+const TOOLTIPS: Record<string, string> = {
   "Módulos básicos": "Incluye las funciones esenciales para la gestión inmobiliaria.",
   "Filtros avanzados": "Filtra unidades por precio, orientación y otras características clave.",
   "Generar reserva online": "Permite a los clientes reservar unidades en línea de forma instantánea.",
@@ -85,7 +103,7 @@ const TOOLTIPS = {
   "Restricción de dirección IP": "Limita el acceso a la plataforma desde ciertas direcciones IP.",
 }
 
-function PlanCard({ nombre, features, destacado }: any) {
+function PlanCard({ nombre, features, destacado }: PlanCardProps) {
   return (
     <div className={`bg-white rounded-2xl shadow-lg border-2 p-8 ${
       destacado 
@@ -100,72 +118,78 @@ function PlanCard({ nombre, features, destacado }: any) {
         </div>
       )}
       
-      <h3 className="text-2xl font-bold text-center text-[#1F1F1F] mb-6">
-        {nombre}
-      </h3>
-      
-      <hr className="border-[#BEBEBE] mb-6" />
-      
-      <ul className="space-y-3">
-        {features.map((f: any, i: number) => (
-          <li key={i} className="flex items-center gap-3">
-                         {f.info ? (
-               <TooltipProvider delayDuration={0}>
-                 <Tooltip>
-                   <TooltipTrigger asChild>
-                     <Info className="text-[#C1DEE8] cursor-pointer" size={16} />
-                   </TooltipTrigger>
-                   <TooltipContent className="bg-[#1F1F1F] text-white border-[#C1DEE8]">
-                     {TOOLTIPS[f.label as keyof typeof TOOLTIPS]}
-                   </TooltipContent>
-                 </Tooltip>
-               </TooltipProvider>
-             ) : (
-               <div className="w-4" />
-             )}
+      <div className="text-center mb-8">
+        <h3 className="text-2xl font-bold text-[#1F1F1F] mb-2">{nombre}</h3>
+        
+      </div>
+
+      <div className="space-y-4 mb-8">
+        {features.map((feature, index) => (
+          <div key={index} className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              {feature.ok ? (
+                <Check className="w-5 h-5 text-green-600" />
+              ) : (
+                <X className="w-5 h-5 text-red-600" />
+              )}
+              <span className={`text-sm ${feature.ok ? 'text-[#1F1F1F]' : 'text-[#6B7280]'}`}>
+                {feature.label}
+              </span>
+            </div>
             
-            <span className={`flex-1 ${f.ok ? "text-[#1F1F1F]" : "text-[#BEBEBE]"}`}>
-              {f.label}
-            </span>
-            
-            {f.ok ? (
-              <Check className="text-[#C1DEE8]" size={20} />
-            ) : (
-              <X className="text-[#FF3B3B]" size={20} />
+            {feature.info && (
+              <TooltipProvider delayDuration={0}>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <div className="bg-[#C1DEE8] text-[#1F1F1F] w-5 h-5 rounded-full flex items-center justify-center cursor-help">
+                      <Info className="w-3 h-3" />
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent className="bg-white text-[#1F1F1F] border border-[#BEBEBE] shadow-md">
+                    <p className="max-w-xs">{TOOLTIPS[feature.label]}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             )}
-          </li>
+          </div>
         ))}
-      </ul>
-      
-             <div className="mt-8">
-         <Button className="w-full bg-white border-[#BEBEBE] text-[#1F1F1F] hover:bg-white hover:shadow-lg font-semibold px-6 py-2 rounded-lg transition-all duration-200">
-           Solicitar Demo
-         </Button>
-       </div>
+      </div>
+
+
     </div>
   )
 }
 
 export function PricingSection() {
   return (
-    <section className="py-20 bg-white">
+    <section id="planes" className="py-20 bg-[#FEFEFF]">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#1F1F1F]">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#1F1F1F] mb-4">
             Planes a tu medida
           </h2>
-          <p className="mt-4 text-xl text-[#1F1F1F] max-w-3xl mx-auto">
-            Elegí el plan que mejor se adapte a las necesidades de tu empresa
+          <p className="text-xl text-[#1F1F1F] max-w-2xl mx-auto">
+            Elegí el plan que mejor se adapte a tus necesidades y comienza a potenciar tus ventas
           </p>
         </div>
-        
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {PLANES.map((plan) => (
-            <PlanCard key={plan.nombre} {...plan} />
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-12">
+          {PLANES.map((plan, index) => (
+            <PlanCard
+              key={index}
+              nombre={plan.nombre}
+              features={plan.features}
+              destacado={plan.destacado}
+            />
           ))}
         </div>
-        
-        
+
+        {/* Botón único centrado */}
+        <div className="text-center">
+          <Button asChild className="bg-[#1F1F1F] text-white hover:bg-black hover:shadow-lg font-semibold px-6 py-2 rounded-lg transition-all duration-200">
+            <a href="#contacto">Obtener Demo</a>
+          </Button>
+        </div>
       </div>
     </section>
   )

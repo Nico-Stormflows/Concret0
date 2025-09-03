@@ -29,69 +29,110 @@ body, h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(to right, var(--primary-blue), var(--primary-orange));
 }
 
-.btn-primary {
-  @apply bg-[#1F1F1F] text-white hover:bg-black font-semibold px-8 py-3 rounded-full transition-colors;
-}
-
-.btn-secondary {
-  @apply bg-white text-[#1F1F1F] hover:bg-white hover:shadow-lg font-semibold px-6 py-2 rounded-lg transition-all duration-200;
-}
-
-.tab-button {
-  @apply text-lg font-semibold py-4 px-6 border-b-2 w-full text-left rounded-none transition-all duration-200;
-}
-
-.tab-button-active {
-  @apply border-[#1F1F1F] text-[#1F1F1F] bg-white;
-}
-
-.tab-button-inactive {
-  @apply border-transparent text-[#1F1F1F] hover:text-[#1F1F1F] hover:bg-white hover:shadow-lg bg-white;
-}
-
-.input-field {
-  @apply flex-1 px-4 py-3 rounded-full border-[#BEBEBE] focus:border-[#C1DEE8] focus:ring-[#C1DEE8] transition-colors;
-}
-
-.card {
-  @apply bg-white rounded-2xl shadow-lg border border-[#C1DEE8] p-6;
-}
-
 /* Hero Section Professional Classes */
 .hero-section {
-  @apply relative pb-0;
+  position: relative;
+  padding-bottom: 0;
   height: var(--hero-section-height);
 }
 
 .hero-gradient {
-  @apply absolute inset-0 bg-gradient-to-r from-[#C1DEE8] to-[#FBD9B9];
+  position: relative;
+  inset: 0;
+  background: linear-gradient(to right, var(--primary-blue), var(--primary-orange));
   height: var(--hero-gradient-height);
 }
 
 .hero-image-container {
-  @apply absolute top-0 right-0 z-20;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 20;
   width: var(--hero-image-width);
   height: var(--hero-image-height);
-  transform: translateX(-20%) translateY(0);
+  transform: translateX(-20%);
 }
 
 .hero-image {
-  @apply w-full h-full object-contain;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));
 }
 
 .hero-content {
-  @apply container mx-auto px-6 relative z-10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  max-width: 1280px; /* alinear con container de Tailwind */
+  margin: 0 auto;
+  padding: 0 1.5rem; /* igual a container px-6 */
 }
 
 .hero-layout {
-  @apply flex flex-col lg:flex-row items-start pt-20 pb-2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0.5rem; /* menos espacio superior */
+  padding-bottom: 1rem; /* menos espacio inferior */
+  min-height: var(--hero-gradient-height);
+}
+
+@media (min-width: 1024px) {
+  .hero-layout {
+    flex-direction: row;
+    align-items: center;
+  }
 }
 
 .hero-text-section {
-  @apply lg:w-1/2 space-y-8 lg:pr-8 lg:pt-12;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .hero-text-section {
+    width: 50%;
+    padding-right: 2rem;
+    padding-top: 0;
+  }
 }
 
 .hero-placeholder {
-  @apply lg:w-1/2;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .hero-placeholder {
+    width: 50%;
+  }
+}
+
+/* Mobile-specific adjustments to tighten spacing and reposition image */
+@media (max-width: 767px) {
+  /* Reducir altura del gradiente en mobile y unificar espacios */
+  :root {
+    --hero-gradient-height: 32vh;
+    --hero-section-height: 36vh;
+  }
+
+  .hero-layout {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  /* Colocar la imagen justo debajo del gradiente y centrarla en mobile */
+  .hero-image-container {
+    display: none; /* ocultar imagen en mobile */
+  }
+
+  /* Asegurar que la imagen no pise la siguiente sección */
+  .hero-section {
+    padding-bottom: 1rem;
+  }
 }

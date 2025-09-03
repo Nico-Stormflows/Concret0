@@ -3,9 +3,15 @@
 import { useState } from "react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
+interface FAQ {
+  question: string
+  answer: string
+}
+
 export function FAQSection() {
   const [openItem, setOpenItem] = useState<string | undefined>(undefined)
-  const faqs = [
+  
+  const faqs: FAQ[] = [
     {
       question: "¿Qué es Concret0 y para quién es?",
       answer:
@@ -64,7 +70,7 @@ export function FAQSection() {
   ]
 
   return (
-    <section className="py-20 bg-white">
+    <section id="faq" className="py-16 bg-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-[#1F1F1F]">

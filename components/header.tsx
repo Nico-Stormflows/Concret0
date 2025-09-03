@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Menu, X, Search } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
@@ -31,45 +31,34 @@ export function Header() {
               <Image
                 src="/logo-concreto.png"
                 alt="Concret0"
-                width={120}
-                height={32}
-                className="h-8 w-auto"
+                width={300}
+                height={80}
+                className="h-14 w-auto"
+                style={{ objectFit: 'contain' }}
               />
             </Link>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/version-2" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
-              Versión 2
+            <Link href="#funcionalidades" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
+              Funcionalidades
             </Link>
-            <Link href="#nosotros" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
-              Nosotros
+            <Link href="#planes" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
+              Planes
             </Link>
-            <Link href="#proyectos" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
-              Proyectos
+            <Link href="#faq" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
+              FAQ
             </Link>
-            <Link href="#agentes" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
-              Agentes
-            </Link>
-            <Link href="#servicios" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
-              Servicios
-            </Link>
-            <Link href="#propiedades" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
-              Propiedades
+            <Link href="#contacto" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
+              Contactanos
             </Link>
           </nav>
 
-          {/* Right side - Search, Other services, Contact */}
+          {/* Right side - Login */}
           <div className="hidden md:flex items-center space-x-6">
-            <button className="text-[#1F1F1F] hover:text-[#C1DEE8] transition-colors">
-              <Search className="w-5 h-5" />
-            </button>
-            <Link href="#otros-servicios" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
-              Otros servicios
-            </Link>
-            <Button className="bg-[#1F1F1F] text-white hover:bg-black font-semibold px-6 py-2 rounded-lg">
-              Contactanos
+            <Button asChild className="bg-[#1F1F1F] text-white hover:bg-black font-semibold px-6 py-2 rounded-lg">
+              <Link href="/login">Login</Link>
             </Button>
           </div>
 
@@ -86,29 +75,20 @@ export function Header() {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-[#BEBEBE]">
             <nav className="flex flex-col space-y-4">
-              <Link href="/version-2" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
-                Versión 2
+              <Link href="#funcionalidades" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
+                Funcionalidades
               </Link>
-              <Link href="#nosotros" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
-                Nosotros
+              <Link href="#planes" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
+                Planes
               </Link>
-              <Link href="#proyectos" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
-                Proyectos
+              <Link href="#faq" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
+                FAQ
               </Link>
-              <Link href="#agentes" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
-                Agentes
-              </Link>
-              <Link href="#servicios" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
-                Servicios
-              </Link>
-              <Link href="#propiedades" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
-                Propiedades
-              </Link>
-              <Link href="#otros-servicios" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
-                Otros servicios
-              </Link>
-              <Button className="bg-[#1F1F1F] text-white hover:bg-black font-semibold px-6 py-2 rounded-lg w-full">
+              <Link href="#contacto" className="text-[#1F1F1F] hover:text-[#C1DEE8] font-medium transition-colors">
                 Contactanos
+              </Link>
+              <Button asChild className="bg-[#1F1F1F] text-white hover:bg-black font-semibold px-6 py-2 rounded-lg w-full">
+                <Link href="/login">Login</Link>
               </Button>
             </nav>
           </div>

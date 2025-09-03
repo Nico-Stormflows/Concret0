@@ -4,10 +4,29 @@ import { useState } from "react"
 import { Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
+interface Metric {
+  title: string
+  subtitle: string
+  description: string
+  benefits: string[]
+}
+
+interface Metrics {
+  metrics: Metric
+  cashflow: Metric
+  automation: Metric
+}
+
+interface ChartData {
+  month: string
+  sold: number
+  reserved: number
+}
+
 export function MetricsSection() {
   const [activeTab, setActiveTab] = useState("metrics")
 
-  const metrics = {
+  const metrics: Metrics = {
     metrics: {
       title: "Métricas Claras",
       subtitle: "Tus métricas de venta, al instante",
@@ -43,7 +62,7 @@ export function MetricsSection() {
   const currentMetric = metrics[activeTab as keyof typeof metrics]
 
   // Mock chart data
-  const chartData = [
+  const chartData: ChartData[] = [
     { month: "Enero", sold: 5, reserved: 3 },
     { month: "Febrero", sold: 8, reserved: 4 },
     { month: "Marzo", sold: 12, reserved: 5 },
@@ -72,29 +91,29 @@ export function MetricsSection() {
                 <Button
                   key={key}
                   onClick={() => setActiveTab(key)}
-                                          className={`tab-button ${
-                          activeTab === key 
-                            ? "border-[#1F1F1F] text-[#1F1F1F] bg-white" 
-                            : "tab-button-inactive"
-                        }`}
+                  className={`tab-button ${
+                    activeTab === key 
+                      ? "border-[#1F1F1F] text-[#1F1F1F] bg-white" 
+                      : "tab-button-inactive"
+                  }`}
                 >
                   {metrics[key as keyof typeof metrics].title}
                 </Button>
               ))}
             </div>
 
-            <div className="min-h-[300px]">
-              <h3 className="text-3xl font-bold text-[#1F1F1F] mb-4">
+            <div className="space-y-6">
+              <h3 className="text-2xl font-bold text-[#1F1F1F] mb-2">
                 {currentMetric.subtitle}
               </h3>
-              <p className="text-xl text-[#1F1F1F] mb-6">
+              <p className="text-[#1F1F1F] leading-relaxed text-lg">
                 {currentMetric.description}
               </p>
-              <ul className="text-lg text-[#1F1F1F] space-y-3">
+              <ul className="space-y-3">
                 {currentMetric.benefits.map((benefit, index) => (
-                  <li key={index} className="flex items-start">
-                    <Check className="text-[#C1DEE8] mr-3 text-xl mt-1 flex-shrink-0" />
-                    <span>{benefit}</span>
+                  <li key={index} className="flex items-start space-x-3">
+                    <Check className="w-5 h-5 text-[#C1DEE8] mt-0.5 flex-shrink-0" />
+                    <span className="text-[#1F1F1F]">{benefit}</span>
                   </li>
                 ))}
               </ul>
@@ -102,56 +121,34 @@ export function MetricsSection() {
           </div>
 
           {/* Left content - Chart */}
-          <div className="lg:w-1/2 mt-10 lg:mt-0">
-            <div className="bg-white rounded-2xl shadow-lg border border-[#C1DEE8] p-6">
-              <h4 className="font-bold text-2xl text-[#1F1F1F] text-center mb-6">
-                Estado de Unidades - Proyecto "Altos de Palermo"
+          <div className="lg:w-1/2">
+            <div className="bg-white rounded-2xl shadow-lg border border-[#C1DEE8] p-8">
+              <h4 className="text-xl font-bold text-[#1F1F1F] mb-6 text-center">
+                Ventas vs Reservas
               </h4>
               
-              {/* Placeholder for chart */}
-              <div className="bg-gradient-to-br from-[#C1DEE8]/20 to-[#FBD9B9]/20 rounded-xl p-6 h-80 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-[#C1DEE8] rounded-full flex items-center justify-center mx-auto mb-4">
-                    <div className="text-[#1F1F1F] text-2xl font-bold">📊</div>
-                  </div>
-                  <h5 className="text-lg font-semibold text-[#1F1F1F] mb-2">
-                    Gráfico de Ventas
-                  </h5>
-                  <p className="text-[#1F1F1F] text-sm">
-                    Visualización de unidades vendidas vs reservadas
-                  </p>
-                  
-                  {/* Mock chart bars */}
-                  <div className="flex items-end justify-center space-x-2 mt-6 h-32">
-                    {chartData.map((data, index) => (
-                      <div key={index} className="flex flex-col items-center">
-                        <div className="flex flex-col space-y-1">
-                          <div 
-                            className="w-8 bg-[#C1DEE8] rounded-t"
-                            style={{ height: `${(data.sold / 15) * 80}px` }}
-                          ></div>
-                          <div 
-                            className="w-8 bg-[#FBD9B9] rounded-t"
-                            style={{ height: `${(data.reserved / 15) * 80}px` }}
-                          ></div>
-                        </div>
-                        <span className="text-xs text-[#1F1F1F] mt-2">{data.month}</span>
+              <div className="space-y-4">
+                {chartData.map((data, index) => (
+                  <div key={index} className="space-y-2">
+                    <div className="flex justify-between text-sm text-[#1F1F1F]">
+                      <span>{data.month}</span>
+                      <div className="flex space-x-4">
+                        <span className="text-[#C1DEE8]">Vendidas: {data.sold}</span>
+                        <span className="text-[#FBD9B9]">Reservadas: {data.reserved}</span>
                       </div>
-                    ))}
-                  </div>
-                  
-                  {/* Legend */}
-                  <div className="flex justify-center space-x-4 mt-4 text-sm">
-                    <div className="flex items-center">
-                      <div className="w-3 h-3 bg-[#C1DEE8] rounded mr-2"></div>
-                      <span className="text-[#1F1F1F]">Vendidas</span>
                     </div>
-                    <div className="flex items-center">
-                      <div className="w-3 h-3 bg-[#FBD9B9] rounded mr-2"></div>
-                      <span className="text-[#1F1F1F]">Reservadas</span>
+                    <div className="flex space-x-1 h-4">
+                      <div 
+                        className="bg-[#C1DEE8] rounded-l-sm"
+                        style={{ width: `${(data.sold / 15) * 100}%` }}
+                      ></div>
+                      <div 
+                        className="bg-[#FBD9B9] rounded-r-sm"
+                        style={{ width: `${(data.reserved / 15) * 100}%` }}
+                      ></div>
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>

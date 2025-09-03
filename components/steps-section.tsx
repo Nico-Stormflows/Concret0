@@ -1,7 +1,14 @@
 import { MessageCircle, Mail, PenTool } from "lucide-react"
+import { ReactNode } from "react"
+
+interface Step {
+  icon: ReactNode
+  title: string
+  description: string
+}
 
 export function StepsSection() {
-  const steps = [
+  const steps: Step[] = [
     {
       icon: <MessageCircle className="w-12 h-12 text-[#C1DEE8]" />,
       title: "Conecta con tu equipo",
@@ -20,10 +27,10 @@ export function StepsSection() {
   ]
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-16 bg-white">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#1F1F1F]">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-5xl font-bold text-[#1F1F1F]">
             Todo debería ser así de simple.
           </h2>
         </div>

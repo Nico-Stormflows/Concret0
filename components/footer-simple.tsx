@@ -4,14 +4,14 @@ import { Input } from "@/components/ui/input"
 
 export function FooterSimple() {
   return (
-    <footer className="py-20 relative overflow-hidden">
+    <footer id="contacto" className="py-20 relative overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#C1DEE8] to-[#FBD9B9]"></div>
       
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left content */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             <div className="space-y-4">
               <h2 className="text-4xl md:text-5xl font-bold text-[#1F1F1F]">
                 Podemos ayudarte a vender más
@@ -50,6 +50,18 @@ export function FooterSimple() {
                 />
               </div>
               <div>
+                <label htmlFor="company" className="block text-lg font-medium text-[#1F1F1F] mb-2">
+                  Empresa
+                </label>
+                <Input
+                  type="text"
+                  name="company"
+                  id="company"
+                  placeholder="Nombre de la empresa"
+                  className="w-full px-4 py-3 rounded-lg border-[#BEBEBE] focus:border-[#C1DEE8] focus:ring-[#C1DEE8]"
+                />
+              </div>
+              <div>
                 <label htmlFor="email" className="block text-lg font-medium text-[#1F1F1F] mb-2">
                   Email
                 </label>
@@ -61,9 +73,11 @@ export function FooterSimple() {
                   className="w-full px-4 py-3 rounded-lg border-[#BEBEBE] focus:border-[#C1DEE8] focus:ring-[#C1DEE8]"
                 />
               </div>
-              <Button type="submit" className="w-full bg-[#1F1F1F] text-white hover:bg-black px-8 py-3 rounded-lg font-semibold text-lg">
-                Enviar Consulta
-              </Button>
+              <div className="flex justify-end">
+                <Button type="submit" className="bg-[#1F1F1F] text-white hover:bg-black px-6 py-2 rounded-lg font-semibold">
+                  Enviar Consulta
+                </Button>
+              </div>
             </form>
           </div>
         </div>

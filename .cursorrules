@@ -1,0 +1,180 @@
+You are an expert in TypeScript, React, Vite, React Router, Shadcn UI, Radix UI, Tailwind CSS, and Firebase.
+
+Code Style and Structure
+- Write concise, technical TypeScript code following modern conventions.
+- Use functional and declarative programming patterns; avoid classes.
+- Prefer iteration and modularization over code duplication.
+- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError).
+- Structure files: exported component, subcomponents, helpers, static content.
+
+TypeScript Best Practices
+- Use 2 space indentation.
+- Use single quotes for strings except to avoid escaping.
+- Use semicolons consistently.
+- No unused variables or imports.
+- Add a space after keywords.
+- Add a space before a function declaration's parentheses.
+- Always use === instead of ==.
+- Infix operators must be spaced.
+- Commas should have a space after them.
+- Keep else statements on the same line as their curly braces.
+- For multi-line if statements, use curly braces.
+- Always handle the err function parameter.
+- Use camelCase for variables and functions.
+- Use PascalCase for React components and TypeScript interfaces/types.
+- Use proper TypeScript types and interfaces.
+- Avoid 'any' type; use proper typing or 'unknown' when necessary.
+
+Naming Conventions
+- Use lowercase with dashes for directories (e.g., components/auth-wizard).
+- Favor named exports for components.
+- Use PascalCase for component files (e.g., LoginForm.tsx).
+- Use camelCase for utility files (e.g., useFirebase.ts).
+
+React Best Practices
+- Use functional components with TypeScript interfaces for props.
+- Use the "function" keyword for component definitions.
+- Implement hooks correctly (useState, useEffect, useContext, useReducer, useMemo, useCallback).
+- Follow the Rules of Hooks (only call hooks at the top level, only call hooks from React functions).
+- Create custom hooks to extract reusable component logic.
+- Use React.memo() for component memoization when appropriate.
+- Implement useCallback for memoizing functions passed as props.
+- Use useMemo for expensive computations.
+- Avoid inline function definitions in render to prevent unnecessary re-renders.
+- Prefer composition over inheritance.
+- Use children prop and render props pattern for flexible, reusable components.
+- Use refs sparingly and mainly for DOM access.
+- Prefer controlled components over uncontrolled components.
+- Implement error boundaries to catch and handle errors gracefully.
+- Use cleanup functions in useEffect to prevent memory leaks.
+- Use short-circuit evaluation and ternary operators for conditional rendering.
+
+State Management
+- Use React Context for global state management when needed.
+- Lift state up when needed to share state between components.
+- Use context for intermediate state sharing when prop drilling becomes cumbersome.
+- Use custom hooks for complex state logic.
+
+UI and Styling
+- Use Shadcn UI and Radix UI for component foundations.
+- Implement responsive design with Tailwind CSS; use a mobile-first approach.
+- Use Tailwind utility classes for styling:
+  - Use Tailwind for common utilities and layout.
+  - Use Tailwind for rapid prototyping and consistent spacing/sizing.
+  - Never use the @apply directive.
+- Implement a consistent naming convention for CSS classes.
+- Use Tailwind's design system for colors, spacing, and typography.
+
+File Structure for Components
+- Place component files in appropriate directories:
+  - pages/ for route components
+  - components/ for reusable components
+  - hooks/ for custom hooks
+  - contexts/ for React contexts
+  - types/ for TypeScript type definitions
+- Example structure:
+  src/
+    components/
+      ui/ (Shadcn components)
+      features/ (feature-specific components)
+    pages/
+    hooks/
+    contexts/
+    types/
+
+Performance Optimization
+- Minimize useEffect and useState usage when possible.
+- Use React.memo for expensive components.
+- Use dynamic loading for non-critical components.
+- Optimize images: use WebP format, include size data, implement lazy loading.
+- Minimize the use of global styles; prefer Tailwind utility classes.
+- Use code splitting with React.lazy and Suspense.
+
+Forms and Validation
+- Use controlled components for form inputs.
+- Implement form validation (client-side and server-side).
+- Consider using libraries like react-hook-form for complex forms.
+- Use Zod for schema validation.
+
+Error Handling and Validation
+- Prioritize error handling and edge cases.
+- Handle errors and edge cases at the beginning of functions.
+- Use early returns for error conditions to avoid deeply nested if statements.
+- Place the happy path last in the function for improved readability.
+- Avoid unnecessary else statements; use if-return pattern instead.
+- Use guard clauses to handle preconditions and invalid states early.
+- Implement proper error logging and user-friendly error messages.
+
+Accessibility (a11y)
+- Use semantic HTML elements.
+- Implement proper ARIA attributes.
+- Ensure keyboard navigation support.
+- Use Radix UI components which have built-in accessibility.
+
+Testing
+- Write unit tests for components using Jest and React Testing Library.
+- Implement integration tests for critical user flows.
+- Use snapshot testing judiciously.
+
+Security
+- Sanitize user inputs to prevent XSS attacks.
+- Use dangerouslySetInnerHTML sparingly and only with sanitized content.
+- Validate all user inputs on both client and server side.
+
+Firebase Integration
+- Use proper Firebase security rules.
+- Handle Firebase authentication states properly.
+- Implement proper error handling for Firebase operations.
+- Use Firebase Firestore efficiently with proper queries.
+
+Vite and React Router
+- Use Vite's fast HMR for development.
+- Implement proper routing with React Router.
+- Use route-based code splitting when appropriate.
+- Optimize bundle size with Vite's build tools.
+
+Key Conventions
+- Use descriptive component and function names.
+- Implement proper TypeScript interfaces for all data structures.
+- Use Tailwind utility classes consistently.
+- Follow Shadcn UI component patterns.
+- Implement proper error boundaries and loading states.
+- Use React Router for navigation and routing.
+- Implement proper authentication flow with Firebase.
+
+Follow React and TypeScript best practices for modern web development.
+
+Development Standards and Quality Assurance
+- Implement enterprise-grade coding standards with emphasis on maintainability and scalability.
+- Prioritize robust architectural patterns over temporary solutions or workarounds.
+- Ensure all implementations follow established design patterns and avoid anti-patterns.
+- Maintain code quality through comprehensive error handling and edge case coverage.
+- Document complex business logic and architectural decisions appropriately.
+
+Data Management and Configuration
+- Implement dynamic configuration management instead of hardcoded values.
+- Use environment-based configuration patterns for different deployment scenarios.
+- Establish parameterized solutions that adapt to varying requirements.
+- Implement configuration validation to ensure data integrity across environments.
+- Utilize dependency injection patterns for flexible component composition.
+
+Responsive Design Principles
+- Adopt a mobile-first responsive design approach for all UI implementations.
+- Ensure cross-device compatibility through progressive enhancement strategies.
+- Implement fluid layouts that adapt seamlessly across different screen sizes.
+- Prioritize accessibility and usability across all device types.
+- Use CSS Grid and Flexbox for robust layout management.
+
+Code Quality and Maintenance
+- Implement comprehensive testing strategies for all critical functionality.
+- Follow clean code principles with emphasis on readability and maintainability.
+- Establish consistent coding standards across all development phases.
+- Implement proper logging and monitoring for production environments.
+- Maintain backward compatibility when implementing new features.
+
+Performance and Optimization
+- Implement efficient data fetching and caching strategies.
+- Optimize bundle size through code splitting and lazy loading.
+- Ensure optimal rendering performance through proper React optimization techniques.
+- Implement progressive loading patterns for enhanced user experience.
+- Monitor and optimize application performance metrics continuously.
