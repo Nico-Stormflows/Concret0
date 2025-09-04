@@ -136,3 +136,15 @@ body, h1, h2, h3, h4, h5, h6 {
     padding-bottom: 1rem;
   }
 }
+
+/* Ocultar spinners de inputs numéricos (Chromium/Edge) */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Ocultar spinners en Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

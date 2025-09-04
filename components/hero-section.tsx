@@ -36,7 +36,7 @@ export function HeroSection() {
             {/* CTA */}
             <div className="flex">
               <Button asChild className="bg-[#1F1F1F] text-white hover:bg-black px-6 py-2 rounded-lg font-semibold">
-                <Link href="#contacto">Obtener Demo</Link>
+                <Link href="#contacto">Contactanos</Link>
               </Button>
             </div>
           </div>

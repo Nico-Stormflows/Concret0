@@ -187,7 +187,7 @@ export function PricingSection() {
         {/* Botón único centrado */}
         <div className="text-center">
           <Button asChild className="bg-[#1F1F1F] text-white hover:bg-black hover:shadow-lg font-semibold px-6 py-2 rounded-lg transition-all duration-200">
-            <a href="#contacto">Obtener Demo</a>
+            <a href="#contacto">Contactanos</a>
           </Button>
         </div>
       </div>

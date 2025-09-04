@@ -1,6 +1,7 @@
 import { Phone, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 
 export function FooterSimple() {
   return (
@@ -37,42 +38,110 @@ export function FooterSimple() {
           <div className="bg-white rounded-2xl shadow-lg border border-[#C1DEE8] p-8">
             <h3 className="text-2xl font-bold text-[#1F1F1F] mb-6">Contactanos</h3>
             <form className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-lg font-medium text-[#1F1F1F] mb-2">
-                  Nombre
-                </label>
-                <Input
-                  type="text"
-                  name="name"
-                  id="name"
-                  placeholder="Juan Pérez"
-                  className="w-full px-4 py-3 rounded-lg border-[#BEBEBE] focus:border-[#C1DEE8] focus:ring-[#C1DEE8]"
-                />
+              {/* Obligatorios grandes */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="fullName" className="block text-base font-bold text-[#1F1F1F] mb-2">
+                    Nombre y Apellido <span className="text-red-600">*</span>
+                  </label>
+                  <Input
+                    type="text"
+                    name="fullName"
+                    id="fullName"
+                    required
+                    aria-required="true"
+                    placeholder="Juan Pérez"
+                    className="w-full px-4 py-3 rounded-lg border-[#BEBEBE] focus:border-[#C1DEE8] focus:ring-[#C1DEE8]"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="company" className="block text-base font-bold text-[#1F1F1F] mb-2">
+                    Empresa <span className="text-red-600">*</span>
+                  </label>
+                  <Input
+                    type="text"
+                    name="company"
+                    id="company"
+                    required
+                    aria-required="true"
+                    placeholder="Nombre de la empresa"
+                    className="w-full px-4 py-3 rounded-lg border-[#BEBEBE] focus:border-[#C1DEE8] focus:ring-[#C1DEE8]"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-base font-bold text-[#1F1F1F] mb-2">
+                    Email <span className="text-red-600">*</span>
+                  </label>
+                  <Input
+                    type="email"
+                    name="email"
+                    id="email"
+                    required
+                    aria-required="true"
+                    placeholder="juan.perez@email.com"
+                    className="w-full px-4 py-3 rounded-lg border-[#BEBEBE] focus:border-[#C1DEE8] focus:ring-[#C1DEE8]"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="phone" className="block text-base font-bold text-[#1F1F1F] mb-2">
+                    Teléfono <span className="text-red-600">*</span>
+                  </label>
+                  <Input
+                    type="tel"
+                    name="phone"
+                    id="phone"
+                    required
+                    aria-required="true"
+                    placeholder="+54 9 11 1234-5678"
+                    className="w-full px-4 py-3 rounded-lg border-[#BEBEBE] focus:border-[#C1DEE8] focus:ring-[#C1DEE8]"
+                  />
+                </div>
               </div>
-              <div>
-                <label htmlFor="company" className="block text-lg font-medium text-[#1F1F1F] mb-2">
-                  Empresa
-                </label>
-                <Input
-                  type="text"
-                  name="company"
-                  id="company"
-                  placeholder="Nombre de la empresa"
-                  className="w-full px-4 py-3 rounded-lg border-[#BEBEBE] focus:border-[#C1DEE8] focus:ring-[#C1DEE8]"
-                />
+
+              {/* Opcionales */}
+              <div className="space-y-4 mt-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="country" className="block text-base font-medium text-[#1F1F1F] mb-1">
+                      País
+                    </label>
+                    <Input
+                      type="text"
+                      name="country"
+                      id="country"
+                      placeholder="Argentina"
+                      className="w-full px-3 py-2 text-sm rounded-md border-[#BEBEBE] focus:border-[#C1DEE8] focus:ring-[#C1DEE8]"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="realtors" className="block text-base font-medium text-[#1F1F1F] mb-1">
+                      Inmobiliarias que venden tus proyectos
+                    </label>
+                    <Input
+                      type="number"
+                      name="realtors"
+                      id="realtors"
+                      min={0}
+                      step={1}
+                      inputMode="numeric"
+                      placeholder="0"
+                      className="w-full px-3 py-2 text-sm rounded-md border-[#BEBEBE] focus:border-[#C1DEE8] focus:ring-[#C1DEE8]"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-base font-medium text-[#1F1F1F] mb-1">
+                    Mensaje
+                  </label>
+                  <Textarea
+                    name="message"
+                    id="message"
+                    placeholder="Escribí tu consulta"
+                    className="w-full px-3 py-2 text-sm rounded-md border-[#BEBEBE] focus:border-[#C1DEE8] focus:ring-[#C1DEE8] min-h-28"
+                  />
+                </div>
               </div>
-              <div>
-                <label htmlFor="email" className="block text-lg font-medium text-[#1F1F1F] mb-2">
-                  Email
-                </label>
-                <Input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="juan.perez@email.com"
-                  className="w-full px-4 py-3 rounded-lg border-[#BEBEBE] focus:border-[#C1DEE8] focus:ring-[#C1DEE8]"
-                />
-              </div>
+
               <div className="flex justify-end">
                 <Button type="submit" className="bg-[#1F1F1F] text-white hover:bg-black px-6 py-2 rounded-lg font-semibold">
                   Enviar Consulta

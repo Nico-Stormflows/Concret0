@@ -1,4 +1,5 @@
 "use client"
+import Image from "next/image"
 
 export function FeaturesSection() {
   const features = [
@@ -35,7 +36,7 @@ export function FeaturesSection() {
   ]
 
   return (
-    <section id="funcionalidades" className="py-20 bg-white">
+    <section id="funcionalidades" className="pt-40 pb-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
@@ -51,12 +52,73 @@ export function FeaturesSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300">
-              {/* Imagen de gradiente */}
-              <div className="h-48 bg-gradient-to-br from-[#C1DEE8] to-[#FBD9B9] flex items-center justify-center">
-                <div className="text-white/50 text-sm font-medium">
-                  Imagen {index + 1}
+              {/* Media */}
+              {index === 0 ? (
+                <div className="h-40 relative bg-white">
+                  <Image
+                    src="/exhibicion-alto-impacto.png"
+                    alt="Exhibición de alto impacto"
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className="object-contain"
+                    priority
+                  />
                 </div>
-              </div>
+              ) : index === 1 ? (
+                <div className="h-40 relative bg-white">
+                  <Image
+                    src="/busqueda-seleccion-facil.png"
+                    alt="Búsqueda y selección fácil"
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className="object-contain"
+                  />
+                </div>
+              ) : index === 2 ? (
+                <div className="h-40 relative bg-white">
+                  <Image
+                    src="/optimizacion-ventas.png"
+                    alt="Optimización de ventas"
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className="object-contain"
+                  />
+                </div>
+              ) : index === 3 ? (
+                <div className="h-40 relative bg-white">
+                  <Image
+                    src="/gestion-tiempo-real.png"
+                    alt="Gestión en tiempo real"
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className="object-contain"
+                  />
+                </div>
+              ) : index === 4 ? (
+                <div className="h-40 relative bg-white">
+                  <Image
+                    src="/facilidad-clientes.png"
+                    alt="Facilidad para tus clientes"
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className="object-contain"
+                  />
+                </div>
+              ) : index === 5 ? (
+                <div className="h-40 relative bg-white">
+                  <Image
+                    src="/soporte-integral.png"
+                    alt="Soporte integral"
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className="object-contain"
+                  />
+                </div>
+              ) : (
+                <div className="h-40 bg-gradient-to-br from-[#C1DEE8] to-[#FBD9B9] flex items-center justify-center">
+                  <div className="text-white/50 text-sm font-medium">Imagen {index + 1}</div>
+                </div>
+              )}
               
               {/* Contenido */}
               <div className="p-6">
