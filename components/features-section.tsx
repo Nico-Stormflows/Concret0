@@ -56,7 +56,7 @@ export function FeaturesSection() {
               {index === 0 ? (
                 <div className="h-40 relative bg-white">
                   <Image
-                    src="/exhibicion-alto-impacto.png"
+                    src="/01b-exhibicion.png"
                     alt="Exhibición de alto impacto"
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
@@ -67,7 +67,7 @@ export function FeaturesSection() {
               ) : index === 1 ? (
                 <div className="h-40 relative bg-white">
                   <Image
-                    src="/busqueda-seleccion-facil.png"
+                    src="/02b-busqueda.png"
                     alt="Búsqueda y selección fácil"
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
@@ -77,7 +77,7 @@ export function FeaturesSection() {
               ) : index === 2 ? (
                 <div className="h-40 relative bg-white">
                   <Image
-                    src="/optimizacion-ventas.png"
+                    src="/03b-optimizacion.png"
                     alt="Optimización de ventas"
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
@@ -87,7 +87,7 @@ export function FeaturesSection() {
               ) : index === 3 ? (
                 <div className="h-40 relative bg-white">
                   <Image
-                    src="/gestion-tiempo-real.png"
+                    src="/04-gestion-tiempo-real.png"
                     alt="Gestión en tiempo real"
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
@@ -97,7 +97,7 @@ export function FeaturesSection() {
               ) : index === 4 ? (
                 <div className="h-40 relative bg-white">
                   <Image
-                    src="/facilidad-clientes.png"
+                    src="/05-facilidad.png"
                     alt="Facilidad para tus clientes"
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
@@ -107,7 +107,7 @@ export function FeaturesSection() {
               ) : index === 5 ? (
                 <div className="h-40 relative bg-white">
                   <Image
-                    src="/soporte-integral.png"
+                    src="/06-soporte-integral.png"
                     alt="Soporte integral"
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
